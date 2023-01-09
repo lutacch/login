@@ -31,6 +31,6 @@ def create_token():
 @jwt_required()
 def get_hello():
     dictionary= {
-        "message": "Hello World"
+        "message": "This is your private page, for users only"
     }
     return jsonify(dictionary)

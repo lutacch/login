@@ -15,7 +15,7 @@ export const SignUp = () => {
 
   const handleClick = () => {
     if(actions.signup(email, password))
-    navigate("/single")
+    navigate("/inside")
   
   };
 

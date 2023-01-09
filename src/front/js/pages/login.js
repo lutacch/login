@@ -15,7 +15,7 @@ export const Login = () => {
 
   const handleClick = () => {
     if(actions.login(email, password))
-    navigate("/single")
+    navigate("/")
   
   };
 

@@ -68,6 +68,36 @@ const getState = ({ getStore,  setStore }) => {
           console.error("there hast been an error login");
         }
       },
+
+
+	  signup: async (email, password) => {
+        const opts = {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: email,
+            password: password,
+          }),
+        };
+        try {
+          const resp = await fetch(
+            "https://3001-lutacch-login-afvorbimoxv.ws-eu81.gitpod.io/api/token",
+            opts
+          );
+
+          if (resp.status !== 200) {
+            alert("there has been some error");
+            return false;
+          }
+          const data = await resp.json();
+          console.log("this came from the backend", data);
+          sessionStorage.setItem("token", data.access_token);
+          setStore({ token: data.access_token, email: data.email });
+          return true;
+        } catch (error) {
+          console.error("there hast been an error login");
+        }
+      },
     },
   };
 };
