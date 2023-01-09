@@ -13,6 +13,7 @@ export const Home = () => {
 
   return (
     <div className="text-center mt-5">
+		<h3>Welcome to my website</h3>
       <h1>{store.message}</h1>
     </div>
   );

@@ -6,7 +6,10 @@ export const Navbar = () => {
   const { store, actions } = useContext(Context);
   return (
     <nav className="navbar navbar-light bg-dark">
-      <div className="container  d-md-flex justify-content-md-end">
+      <div className="container  d-md-flex justify-content-md-end ">
+	  <Link to="/signup">
+              <button className="btn btn-success  me-md-4">Signup</button>
+            </Link>
         <div className="ml-auto">
           {!store.token ? (
             <Link to="/login">
