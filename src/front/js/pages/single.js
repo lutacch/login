@@ -1,19 +1,17 @@
-import React, { useContext } from "react";
+import React from "react";
 
-import { Link, useParams } from "react-router-dom";
-import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 
 export const Single = () => {
-  const { store, actions } = useContext(Context);
-  const params = useParams();
-
   return (
     <div>
-      <h1>TE HAS LOGUEADO CON EXITOOOOO</h1>
+      <h1 className="text-center">Te has logueado con exito</h1>
 
       <Link to="/">
-        <span className="btn btn-primary btn-lg" href="#" role="button">
-          Back home
+        <span className="d-grid d-md-flex justify-content-center" href="#" role="button">
+          <button className="btn btn-warning ">
+            Back home
+          </button>
         </span>
       </Link>
     </div>
