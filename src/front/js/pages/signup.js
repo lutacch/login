@@ -11,7 +11,6 @@ export const SignUp = () => {
 
   const navigate = useNavigate();
 
-  console.log("this is your token", store.token);
 
   const handleClick = () => {
     if(actions.signup(email, password))
@@ -22,6 +21,9 @@ export const SignUp = () => {
   return (
     <div className="text-center mt-5">
       <h1>Sign Up</h1>
+      {store.email && store.password ? (
+        "You are sign up"
+      ) : (
 
   
         <div>
@@ -38,7 +40,7 @@ export const SignUp = () => {
             value={password}
           ></input>
           <button onClick={handleClick}>SignUp</button>{" "}
-        </div>
+        </div>)}
     
     </div>
   );

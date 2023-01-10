@@ -34,3 +34,15 @@ def get_hello():
         "message": "This is your private page, for users only"
     }
     return jsonify(dictionary)
+
+
+@api.route("/signup", methods=["POST"])
+def create_user():
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
+    if email == "" or password == "":
+        return jsonify({"msg": "Empty user"}), 401
+
+    access_token = create_access_token(identity=email)
+    user = User(email=email, password =password)
+    return jsonify(user.serialize())

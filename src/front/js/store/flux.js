@@ -81,7 +81,7 @@ const getState = ({ getStore,  setStore }) => {
         };
         try {
           const resp = await fetch(
-            "https://3001-lutacch-login-afvorbimoxv.ws-eu81.gitpod.io/api/token",
+            process.env.BACKEND_URL + "/api/token",
             opts
           );
 
