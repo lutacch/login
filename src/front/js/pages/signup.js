@@ -10,6 +10,7 @@ export const SignUp = () => {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
+  
 
 
   const handleClick = () => {

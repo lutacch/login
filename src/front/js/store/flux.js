@@ -1,12 +1,10 @@
-const getState = ({ getStore,  setStore }) => {
+const getState = ({ getStore, setStore }) => {
   return {
     store: {
       token: null,
       message: null,
-
     },
     actions: {
-
       syncTokenFromSessionStore: () => {
         const token = sessionStorage.getItem("token");
         console.log("Application just loaded");
@@ -21,15 +19,18 @@ const getState = ({ getStore,  setStore }) => {
       },
 
       getMessage: async () => {
-		const store = getStore();
-		const opts = {
-			headers: {
-				Authorization: "Bearer " + store.token
-			}
-		}
+        const store = getStore();
+        const opts = {
+          headers: {
+            Authorization: "Bearer " + store.token,
+          },
+        };
         try {
           // fetching data from the backend
-          const resp = await fetch(process.env.BACKEND_URL +"/api/hello", opts);
+          const resp = await fetch(
+            process.env.BACKEND_URL + "/api/hello",
+            opts
+          );
           const data = await resp.json();
           setStore({ message: data.message });
           // don't forget to return something, that is how the async resolves
@@ -38,7 +39,6 @@ const getState = ({ getStore,  setStore }) => {
           console.log("Error loading message from backend", error);
         }
       },
-    
 
       login: async (email, password) => {
         const opts = {
@@ -63,36 +63,6 @@ const getState = ({ getStore,  setStore }) => {
           console.log("this came from the backend", data);
           sessionStorage.setItem("token", data.access_token);
           setStore({ token: data.access_token });
-          return true;
-        } catch (error) {
-          console.error("there hast been an error login");
-        }
-      },
-
-
-	  signup: async (email, password) => {
-        const opts = {
-          method: "GET",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            email: email,
-            password: password,
-          }),
-        };
-        try {
-          const resp = await fetch(
-            process.env.BACKEND_URL + "/api/token",
-            opts
-          );
-
-          if (resp.status !== 200) {
-            alert("there has been some error");
-            return false;
-          }
-          const data = await resp.json();
-          console.log("this came from the backend", data);
-          sessionStorage.setItem("token", data.access_token);
-          setStore({ token: data.access_token, email: data.email });
           return true;
         } catch (error) {
           console.error("there hast been an error login");
