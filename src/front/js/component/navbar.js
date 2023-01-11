@@ -21,7 +21,7 @@ export const Navbar = () => {
               onClick={() => {
                 actions.logout();
               }}
-              className="btn btn-danger"
+              className="btn btn-warning"
             >
               Logout
             </button>
