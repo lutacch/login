@@ -1,48 +1,85 @@
-import React, { useContext, useState } from "react";
-import { Context } from "../store/appContext";
-
-import "../../styles/home.css";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const SignUp = () => {
-  const { store, actions } = useContext(Context);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
-  const navigate = useNavigate();
-  
-
+const SignUp = () => {
+  const navigate = useNavigate()
+  const [datos, setDatos] = useState({
+    email: "",
+    password: "",
+  });
 
   const handleClick = () => {
-    if(actions.signup(email, password))
-    navigate("/inside")
+    navigate("/new")
   
   };
 
-  return (
-    <div className="text-center mt-5">
-      <h1>Sign Up</h1>
-      {store.email && store.password ? (
-        "You are sign up"
-      ) : (
+  const handleInputChange = (event) => {
+    setDatos({
+      ...datos,
+      [event.target.name]: event.target.value,
+    });
+  };
 
-  
-        <div>
-          <input
-            type="text"
-            placeholder="email"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-          ></input>
-          <input
-            type="password"
-            placeholder="password"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-          ></input>
-          <button onClick={handleClick}>SignUp</button>{" "}
-        </div>)}
-    
+  const enviarDatos = (event) => {
+    event.preventDefault();
+    console.log("enviando datos..." + datos.email + " " + datos.password);
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify(datos);
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch(
+      "https://3001-lutacch-login-mlv5tln6dns.ws-eu81.gitpod.io/api/signup",
+      requestOptions
+    )
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error));
+  };
+
+  return (
+    <div>
+      <h1 className="text-center">Sign Up User</h1>
+      <div className="container d-flex justify-content-center align-items-center">
+        <form className="formulario" onSubmit={enviarDatos}  >
+          <div className="">
+            <input
+              id="email"
+              type="text"
+              placeholder="Email"
+              className="form-control"
+              onChange={handleInputChange}
+              name="email"
+            ></input>
+          </div>
+          <div className="">
+            <input
+              id="password"
+              type="text"
+              placeholder="Password"
+              className="form-control"
+              onChange={handleInputChange}
+              name="password"
+            ></input>
+          </div>
+
+
+            <button type="submit" className="btn btn-primary" >
+              Enviar
+            </button>
+        
+        </form>
+      </div>
     </div>
   );
 };
+
+export default SignUp;

@@ -33,21 +33,12 @@ def get_hello():
     return jsonify(dictionary)
 
 
+
+
+
+
 @api.route("/signup", methods=["POST"])
-def create_user():
-    email = request.json.get("email", None)
-    password = request.json.get("password", None)
-    if email == "" or password == "":
-        return jsonify({"msg": "Empty user"}), 401
-
-    access_token = create_access_token(identity=email)
-    user = User(email=email, password =password)
-    return jsonify(user.serialize()) 
-
-
-
-@api.route("/signup2", methods=["POST"])
-def signUp2():
+def signUp():
     body = request.get_json()
     email = request.json.get("email", None)
     password = request.json.get("password", None)

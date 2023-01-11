@@ -7,12 +7,10 @@ export const Navbar = () => {
   return (
     <nav className="navbar navbar-light bg-dark">
       <div className="container  d-md-flex justify-content-md-end ">
-      <Link to="/signup2">
-              <button className="btn btn-primary  me-md-4">Signup 2</button>
-            </Link>
-	  <Link to="/signup">
-              <button className="btn btn-success  me-md-4">Signup</button>
-            </Link>
+        <Link to="/signup">
+          <button className="btn btn-success me-md-4">Signup</button>
+        </Link>
+
         <div className="ml-auto">
           {!store.token ? (
             <Link to="/login">
