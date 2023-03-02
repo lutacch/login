@@ -37,7 +37,7 @@ const SignUp = () => {
     };
 
     fetch(
-      "https://3001-lutacch-login-mlv5tln6dns.ws-eu81.gitpod.io/api/signup",
+      process.env.BACKEND_URL + "/api/signup",
       requestOptions
     )
       .then((response) => response.text())
